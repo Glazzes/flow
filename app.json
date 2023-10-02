@@ -1,4 +1,7 @@
 {
   "name": "flow",
-  "displayName": "flow"
+  "displayName": "flow",
+  "plugins": [
+    "expo-localization"
+  ]
 }

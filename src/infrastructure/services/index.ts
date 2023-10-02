@@ -1,2 +1,2 @@
-export {default as AxiosHttpService} from './AxiosHttpService';
+export {default as HttpService} from './HttpService';
 export {default as NotifeeNotificationService} from './NotifeeNotificationService';

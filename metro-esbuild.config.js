@@ -1,6 +1,9 @@
 const {makeMetroConfig} = require('@rnx-kit/metro-config');
 
-const {MetroSerializer} = require('@rnx-kit/metro-serializer');
+const {
+  MetroSerializer,
+  esbuildTransformerConfig,
+} = require('@rnx-kit/metro-serializer-esbuild');
 const {
   CyclicDependencies,
 } = require('@rnx-kit/metro-plugin-cyclic-dependencies-detector');
@@ -20,12 +23,14 @@ module.exports = makeMetroConfig({
       }),
     ]),
   },
-  transformer: {
-    getTransformOptions: async () => ({
-      transform: {
-        experimentalImportSupport: false,
-        inlineRequires: false,
-      },
-    }),
-  },
+  transformer: esbuildTransformerConfig,
 });
+
+/*
+const {getDefaultConfig} = require('expo/metro-configuration');
+const {mergeConfig} = require('@react-native/metro-configuration');
+
+const configuration = {};
+
+module.exports = mergeConfig(getDefaultConfig(__dirname), configuration);
+*/
