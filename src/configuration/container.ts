@@ -1,21 +1,22 @@
 import {Container} from 'inversify';
 import {FriendRepository} from '../application/repositories';
-import {
-  NotificationService,
-  LocalStorageService,
-} from '../application/services';
+import {LocalStorageService, PermissionService} from '../application/services';
 import {LocalFriendRepository} from '../infrastructure/repositories';
-import {
-  HttpService,
-  NotifeeNotificationService,
-} from '../infrastructure/services';
+import {HttpService, SimplePermissionService} from '../infrastructure/services';
+import SelectProfileImageViewModel from '../infrastructure/viewmodel/SelectProfileImageViewModel';
+import {ContainerTypes} from './containertypes';
 
 const container = new Container();
 
+// View Models
+container
+  .bind<SelectProfileImageViewModel>(ContainerTypes.SelectProfileImageViewModel)
+  .to(SelectProfileImageViewModel);
+
 // Setup all necessary components
 container
-  .bind<NotificationService>('NotifeeNotificationService')
-  .to(NotifeeNotificationService);
+  .bind<PermissionService>(ContainerTypes.SimplePermissionService)
+  .to(SimplePermissionService);
 
 container
   .bind<FriendRepository>('LocalFriendRepository')

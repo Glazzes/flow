@@ -1,1 +1,1 @@
-export {default as Friend} from './Friend';
+export type {Friend} from './Friend';

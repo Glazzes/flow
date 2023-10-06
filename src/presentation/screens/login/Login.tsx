@@ -10,7 +10,7 @@ type LoginProps = {
 
 const Login: React.FC<LoginProps> = ({navigation}) => {
   const navigateToAccountRegistration = () => {
-    navigation.navigate('accountRegistration');
+    navigation.navigate('register');
   };
 
   return (
@@ -19,8 +19,11 @@ const Login: React.FC<LoginProps> = ({navigation}) => {
       backgroundColor={'screenBackground'}
       justifyContent={'center'}
       alignItems={'center'}>
-      <Text variant={'title'}>Welcome to login!!!</Text>
+      <Text color={'titleColor'} variant={'title'}>
+        Welcome to login!!!
+      </Text>
       <Pressable
+        onPress={navigateToAccountRegistration}
         accessibilityLabel={
           'Iniciar sesion (abre una ventana en el navegador predeterminado)'
         }>

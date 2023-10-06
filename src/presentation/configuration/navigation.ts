@@ -1,4 +1,5 @@
 export type NavigationScreens = {
   login: undefined;
-  accountRegistration: undefined;
+  register: undefined;
+  camera: undefined;
 };

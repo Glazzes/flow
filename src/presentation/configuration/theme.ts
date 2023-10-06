@@ -17,6 +17,7 @@ const theme = createTheme({
   colors: {
     screenBackground: palette.white,
     cardPrimaryBackground: palette.purpleLight,
+    titleColor: palette.black,
   },
   spacing: {
     s: 8,
@@ -32,30 +33,23 @@ const theme = createTheme({
     title: {
       fontFamily: 'Inter-Bold',
       fontSize: 40,
-      color: palette.black,
     },
     body: {
       fontFamily: 'Inter-Regular',
-      color: palette.black,
     },
   },
 });
 
 export type Theme = typeof theme;
 
-// Adittional themes
-export const darkTheme: Theme = {
+// Additional themes
+export let darkTheme: Theme;
+darkTheme = {
   ...theme,
   colors: {
+    ...theme.colors,
     screenBackground: palette.black,
     cardPrimaryBackground: palette.purpleLight,
-  },
-  textVariants: {
-    ...theme.textVariants,
-    title: {
-      ...theme.textVariants.title,
-      color: palette.greenDark,
-    },
   },
 };
 
