@@ -1,9 +1,8 @@
 import {inject, injectable} from 'inversify';
-import {FriendRepository} from '../../application/repositories';
-import {Friend} from '../../domain/entities';
+import {FriendRepository} from '@domain/repositories';
+import {Friend} from '@domain/entities';
 import {HttpService} from '../services';
-import {Logger} from '../../domain/log';
-import {ConsoleLogger} from '../../application/log';
+import {Logger, ConsoleLogger} from '@domain/log';
 
 @injectable()
 export default class RemoteFriendRepository implements FriendRepository {

@@ -1,7 +1,7 @@
 import {injectable} from 'inversify';
 import {Logger} from '../../domain/log';
-import {NotificationService} from '../../application/services';
-import {ConsoleLogger} from '../../application/log';
+import {NotificationService} from '@domain/services';
+import {ConsoleLogger} from '@domain/log';
 
 @injectable()
 export default class NotifeeNotiicationService

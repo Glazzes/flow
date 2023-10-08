@@ -1,8 +1,7 @@
 import {inject, injectable} from 'inversify';
-import {makeAutoObservable} from 'mobx';
+import {makeAutoObservable, observable, runInAction} from 'mobx';
 import {Album, Asset, getAlbumsAsync, getAssetsAsync} from 'expo-media-library';
-import {PermissionService} from '../../application/services';
-import {ContainerTypes} from '../../configuration/containertypes';
+import {PermissionService} from '@domain/services';
 
 type AlbumId = string | undefined;
 
@@ -14,32 +13,32 @@ type AlbumSelection = {
   };
 };
 
-// A name that represents all media when selectedAlbumId is undefied, it's just a filter
-const ALL_MEDIA_NAME = 'all';
-
 @injectable()
 export default class SelectProfileImageViewModel {
   private permissionService: PermissionService;
 
-  hasMediaLibraryPermission: boolean = false;
-  hasCameraPermission: boolean = false;
-  selectedAlbumId: string | undefined = undefined;
-  albums: Album[] = [];
-  albumSelection: AlbumSelection = {};
+  private readonly ALL_MEDIA_NAME = 'all';
+
+  @observable hasMediaLibraryPermission: boolean = false;
+  @observable hasCameraPermission: boolean = false;
+  @observable selectedAlbumId: string | undefined = undefined;
+  @observable albums: Album[] = [];
+  @observable albumSelection: AlbumSelection = {};
 
   constructor(
-    @inject(ContainerTypes.SimplePermissionService) permissionService: PermissionService,
+    @inject('PermissionService') permissionService: PermissionService,
   ) {
     makeAutoObservable(this);
     this.permissionService = permissionService;
   }
 
-  findAndSetAlbums(): void {
-    getAlbumsAsync().then(albums => (this.albums = albums));
+  async findAlbums(): Promise<void> {
+    const albums = await getAlbumsAsync();
+    runInAction(() => (this.albums = albums));
   }
 
   selectAlbum(id: AlbumId) {
-    this.selectedAlbumId = id;
+    runInAction(() => (this.selectedAlbumId = id));
   }
 
   async fetchNext(next: number, lastAssetId?: string) {
@@ -49,24 +48,26 @@ export default class SelectProfileImageViewModel {
       after: lastAssetId,
     });
 
-    const albumId: AlbumId = this.selectedAlbumId ?? ALL_MEDIA_NAME;
+    const albumId: AlbumId = this.selectedAlbumId ?? this.ALL_MEDIA_NAME;
     const lastItemId: string = page.assets[page.assets.length - 1].id;
 
-    this.albumSelection[albumId] = {
-      assets: [...this.albumSelection[albumId].assets, ...page.assets],
-      lastItemId,
-      shouldKeepFetching: page.hasNextPage,
-    };
+    runInAction(() => {
+      this.albumSelection[albumId] = {
+        assets: [...this.albumSelection[albumId].assets, ...page.assets],
+        lastItemId,
+        shouldKeepFetching: page.hasNextPage,
+      };
+    });
   }
 
   async requestMediaLibraryPermission(): Promise<void> {
     const isGranted =
       await this.permissionService.requestMediaLibraryPermission();
-    this.hasMediaLibraryPermission = isGranted;
+    runInAction(() => (this.hasMediaLibraryPermission = isGranted));
   }
 
   async requestCameraPermission(): Promise<void> {
     const isGranted = await this.permissionService.requestCameraPermission();
-    this.hasCameraPermission = isGranted;
+    runInAction(() => (this.hasCameraPermission = isGranted));
   }
 }

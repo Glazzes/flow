@@ -1,5 +1,5 @@
-import {Friend} from '../../domain/entities';
-import {FriendRepository} from '../../application/repositories';
+import {Friend} from '@domain/entities';
+import {FriendRepository} from '@domain/repositories/FriendRepository';
 import {injectable} from 'inversify';
 
 @injectable()

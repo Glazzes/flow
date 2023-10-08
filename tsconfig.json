@@ -1,6 +1,12 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
+    "paths": {
+      "@domain/*": ["./src/domain/*"],
+      "@data/*": ["./src/data/*"],
+      "@ui/*": ["./src/ui/*"]
+    },
+    "typeRoots": ["./src/types"],
     "target": "es5",
     "lib": ["es6", "dom"],
     "types": ["reflect-metadata"],
@@ -8,5 +14,6 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-  },
+    "alwaysStrict": false
+  }
 }

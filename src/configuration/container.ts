@@ -1,31 +1,31 @@
 import {Container} from 'inversify';
-import {FriendRepository} from '../application/repositories';
-import {LocalStorageService, PermissionService} from '../application/services';
-import {LocalFriendRepository} from '../infrastructure/repositories';
-import {HttpService, SimplePermissionService} from '../infrastructure/services';
-import SelectProfileImageViewModel from '../infrastructure/viewmodel/SelectProfileImageViewModel';
-import {ContainerTypes} from './containertypes';
+import {FriendRepository} from '@domain/repositories';
+import {PermissionService, LocalStorageService} from '@domain/services';
+import {LocalFriendRepository} from '@data/repositories';
+import {SimplePermissionService} from '@data/services';
+import SelectProfileImageViewModel from '@ui/screens/profile/viewModel';
+import {AxiosHttpManager, HttpManager} from '@data/network';
 
 const container = new Container();
 
 // View Models
 container
-  .bind<SelectProfileImageViewModel>(ContainerTypes.SelectProfileImageViewModel)
+  .bind<SelectProfileImageViewModel>('SelectProfileImageViewModel')
   .to(SelectProfileImageViewModel);
 
-// Setup all necessary components
-container
-  .bind<PermissionService>(ContainerTypes.SimplePermissionService)
-  .to(SimplePermissionService);
+// Repositories
+container.bind<FriendRepository>('FriendRepository').to(LocalFriendRepository);
 
+// Services
 container
-  .bind<FriendRepository>('LocalFriendRepository')
-  .to(LocalFriendRepository);
+  .bind<PermissionService>('PermissionService')
+  .to(SimplePermissionService)
+  .inSingletonScope();
 
 container
   .bind<LocalStorageService>('LocalStorageService')
   .to(LocalStorageService);
 
-container.bind<HttpService>('HttpService').to(HttpService);
+container.bind<HttpManager>('HttpManager').to(AxiosHttpManager);
 
 export default container;

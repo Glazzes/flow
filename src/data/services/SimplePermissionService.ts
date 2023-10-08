@@ -1,5 +1,5 @@
 import {injectable} from 'inversify';
-import {PermissionService} from '../../application/services';
+import {PermissionService} from '@domain/services';
 import {requestPermissionsAsync} from 'expo-media-library';
 import {Camera} from 'react-native-vision-camera';
 
