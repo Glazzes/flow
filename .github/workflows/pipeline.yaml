@@ -1,0 +1,35 @@
+name: Test, build and upload
+on:
+  push:
+    branches:
+      - main
+      # - build
+
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  build-and-upload-apk:
+    name: Build and upload APK
+    runs-on: ubuntu-latest
+    # if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/build' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'yarn'
+          cache-dependency-path: 'yarn.lock'
+
+      - run: chmod +x android/gradlew
+      - run: yarn install
+      - run: android/gradlew assembleDebug
+      
+      - uses: actions/upload-artifact@v4
+        with:
+          name: apks/
+          path: |
+            android/app/build/outputs/apk/debug/*
+            !android/app/build/outputs/apk/debug/*.json
