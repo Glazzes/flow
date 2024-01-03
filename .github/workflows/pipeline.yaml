@@ -23,9 +23,11 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: 'yarn.lock'
 
-      - run: chmod +x android/gradlew
       - run: yarn install
-      - run: android/gradlew assembleDebug
+      - run: |
+          cd android
+          chmod +x gradlew
+          gradlew assembleDebug
       
       - uses: actions/upload-artifact@v4
         with:
