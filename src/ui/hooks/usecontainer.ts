@@ -1,5 +1,5 @@
 import {useMemo} from 'react';
-import container from '../../configuration/container';
+import container from '@configuration/container';
 
 /**
  * @param identifier Qualifying name for a previously registered container instance

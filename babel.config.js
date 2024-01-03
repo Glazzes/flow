@@ -1,5 +1,5 @@
 module.exports = {
-  presets: ['@rnx-kit/babel-preset-metro-react-native'],
+  presets: ['@rnx-kit/babel-preset-metro-react-native', 'babel-preset-expo'],
   plugins: [
     ['module:react-native-dotenv'],
     ['babel-plugin-transform-typescript-metadata'],
@@ -20,9 +20,14 @@ module.exports = {
             rootPathSuffix: './src/ui',
             rootPathPrefix: '@ui/',
           },
+          {
+            rootPathSuffix: './src/configuration',
+            rootPathPrefix: '@configuration/',
+          },
         ],
       },
     ],
+    'expo-router/babel',
     'react-native-reanimated/plugin',
   ],
 };

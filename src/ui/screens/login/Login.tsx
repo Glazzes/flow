@@ -10,7 +10,7 @@ type LoginProps = {
 
 const Login: React.FC<LoginProps> = ({navigation}) => {
   const navigateToAccountRegistration = () => {
-    navigation.navigate('register');
+    navigation.navigate('profile');
   };
 
   return (

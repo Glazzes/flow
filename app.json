@@ -2,6 +2,7 @@
   "name": "flow",
   "displayName": "flow",
   "plugins": [
-    "expo-localization"
+    "expo-localization",
+    "expo-router"
   ]
 }

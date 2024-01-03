@@ -14,10 +14,14 @@ const Profile = observer(() => {
   const COLUM_NUMBER = width > height ? 4 : 3;
 
   useEffect(() => {
-    if (viewModel.hasMediaLibraryPermission && viewModel.albums.length === 0) {
+    if (viewModel.hasMediaLibraryPermission && viewModel.previewAlbums.length === 0) {
       viewModel.findAlbums();
     }
   }, [viewModel]);
+
+  useEffect(() => {
+    viewModel.validatePermissionStatus();
+  }, []);
 
   return (
     <Box flex={1} justifyContent={'center'} alignItems={'center'}>

@@ -13,7 +13,7 @@ const palette = {
   greenDark: '#0A906E',
 };
 
-const theme = createTheme({
+export const theme = createTheme({
   colors: {
     screenBackground: palette.white,
     cardPrimaryBackground: palette.purpleLight,
@@ -26,8 +26,10 @@ const theme = createTheme({
     xl: 40,
   },
   breakpoints: {
-    smallPhone: 0,
-    phone: 475,
+    xm: 0,
+    sm: 400,
+    md: 678,
+    l: 1024,
   },
   textVariants: {
     title: {
@@ -52,5 +54,3 @@ darkTheme = {
     cardPrimaryBackground: palette.purpleLight,
   },
 };
-
-export default theme;

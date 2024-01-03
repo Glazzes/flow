@@ -4,7 +4,8 @@
     "paths": {
       "@domain/*": ["./src/domain/*"],
       "@data/*": ["./src/data/*"],
-      "@ui/*": ["./src/ui/*"]
+      "@ui/*": ["./src/ui/*"],
+      "@configuration/*": ["./src/configuration/*"]
     },
     "typeRoots": ["./src/types"],
     "target": "es5",

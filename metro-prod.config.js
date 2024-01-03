@@ -25,12 +25,3 @@ module.exports = makeMetroConfig({
   },
   transformer: esbuildTransformerConfig,
 });
-
-/*
-const {getDefaultConfig} = require('expo/metro-configuration');
-const {mergeConfig} = require('@react-native/metro-configuration');
-
-const configuration = {};
-
-module.exports = mergeConfig(getDefaultConfig(__dirname), configuration);
-*/

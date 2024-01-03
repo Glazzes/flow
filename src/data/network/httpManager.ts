@@ -50,7 +50,7 @@ export default class AxiosHttpManager implements HttpManager {
   }
 
   get<T = undefined>(url: string, options?: object): Promise<HttpResponse<T>> {
-    const supplier = new Supplier(() => this.http.get(url, options));
+    const supplier = new Supplier(() => this.http.get<T>(url, options));
     return this.mapAxiosResponseToHttpResponse<T>(supplier);
   }
 
@@ -59,7 +59,7 @@ export default class AxiosHttpManager implements HttpManager {
     body: object,
     options?: object,
   ): Promise<HttpResponse<T>> {
-    const supplier = new Supplier(() => this.http.post(url, body, options));
+    const supplier = new Supplier(() => this.http.post<T>(url, body, options));
     return this.mapAxiosResponseToHttpResponse(supplier);
   }
 
@@ -68,16 +68,16 @@ export default class AxiosHttpManager implements HttpManager {
     body: object,
     options?: object,
   ): Promise<HttpResponse<T>> {
-    const supplier = new Supplier(() => this.http.patch(url, body, options));
-    return this.mapAxiosResponseToHttpResponse(supplier);
+    const supplier = new Supplier(() => this.http.patch<T>(url, body, options));
+    return this.mapAxiosResponseToHttpResponse<T>(supplier);
   }
 
   delete<T = undefined>(
     url: string,
     options?: object,
   ): Promise<HttpResponse<T>> {
-    const supplier = new Supplier(() => this.http.delete(url, options));
-    return this.mapAxiosResponseToHttpResponse(supplier);
+    const supplier = new Supplier(() => this.http.delete<T>(url, options));
+    return this.mapAxiosResponseToHttpResponse<T>(supplier);
   }
 
   private async mapAxiosResponseToHttpResponse<T>(
