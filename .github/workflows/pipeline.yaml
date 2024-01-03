@@ -33,5 +33,5 @@ jobs:
         with:
           name: apks/
           path: |
-            android/app/build/outputs/apk/debug/*
-            !android/app/build/outputs/apk/debug/*.json
+            app/build/outputs/apk/debug/*
+            !app/build/outputs/apk/debug/*.json
