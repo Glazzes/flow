@@ -2,7 +2,8 @@
 
 buildscript {
     ext {
-	kotlinVersion = "1.7.21"
+        ffmpegKitPackage = "min-lts"
+	    kotlinVersion = "1.7.21"
         buildToolsVersion = "33.0.0"
         minSdkVersion = 21
         compileSdkVersion = 33
