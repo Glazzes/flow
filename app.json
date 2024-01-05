@@ -1,8 +1,45 @@
 {
-  "name": "flow",
-  "displayName": "flow",
-  "plugins": [
-    "expo-localization",
-    "expo-router"
-  ]
+  "expo": {
+    "name": "flow",
+    "slug": "flow",
+    "scheme": "com.glaze.flow",
+    "plugins": [
+      "expo-localization",
+      "expo-router",
+      [
+        "@config-plugins/ffmpeg-kit-react-native",
+        {
+          "package": "min-lts"
+        }
+      ],
+      [
+        "@morrowdigital/watermelondb-expo-plugin",
+        {
+          "databases": ["flow.db"]
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraProguardRules": "-keep class com.nozbe.watermelondb.** { *; }"
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "7cb962ce-88ec-4acc-b27f-1bbd5bf77ddb"
+      }
+    },
+    "android": {
+      "package": "com.glazzes.flow"
+    },
+    "ios": {
+      "bundleIdentifier": "com.glazzes.flow"
+    }
+  }
 }

@@ -14,7 +14,10 @@ const _layout: React.FC = () => {
   return (
     <ThemeProvider theme={currentTheme}>
       <Stack screenOptions={{headerShown: false}}>
-        <Stack.Screen name={'index'} />
+        <Stack.Screen
+          name={'index'}
+          options={{statusBarHidden: false, statusBarStyle: 'dark'}}
+        />
       </Stack>
     </ThemeProvider>
   );

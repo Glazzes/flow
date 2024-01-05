@@ -15,7 +15,7 @@ const palette = {
 
 export const theme = createTheme({
   colors: {
-    screenBackground: palette.white,
+    screenBackground: '#181818',
     cardPrimaryBackground: palette.purpleLight,
     titleColor: palette.black,
   },

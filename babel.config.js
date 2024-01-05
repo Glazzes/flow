@@ -1,5 +1,5 @@
 module.exports = {
-  presets: ['@rnx-kit/babel-preset-metro-react-native', 'babel-preset-expo'],
+  presets: ['babel-preset-expo'],
   plugins: [
     ['module:react-native-dotenv'],
     ['babel-plugin-transform-typescript-metadata'],
