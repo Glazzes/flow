@@ -5,7 +5,8 @@
       "@domain/*": ["./src/domain/*"],
       "@data/*": ["./src/data/*"],
       "@ui/*": ["./src/ui/*"],
-      "@configuration/*": ["./src/configuration/*"]
+      "@configuration/*": ["./src/configuration/*"],
+      "@assets/*": ["./assets/*"]
     },
     "typeRoots": ["./src/types"],
     "target": "es5",
