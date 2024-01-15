@@ -83,15 +83,6 @@
     "react-test-renderer": "18.2.0",
     "typescript": "^5.1.3"
   },
-  "expo": {
-    "autolinking": {
-      "exclude": [
-        "expo-keep-awake",
-        "expo-font",
-        "expo-application"
-      ]
-    }
-  },
   "engines": {
     "node": ">=16"
   },
