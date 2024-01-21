@@ -11,26 +11,9 @@
         {
           "package": "min-lts"
         }
-      ],
-      [
-        "@morrowdigital/watermelondb-expo-plugin",
-        {
-          "databases": ["flow.db"]
-        }
-      ],
-      [
-        "expo-build-properties",
-        {
-          "android": {
-            "extraProguardRules": "-keep class com.nozbe.watermelondb.** { *; }"
-          }
-        }
       ]
     ],
     "extra": {
-      "router": {
-        "origin": false
-      },
       "eas": {
         "projectId": "7cb962ce-88ec-4acc-b27f-1bbd5bf77ddb"
       }
